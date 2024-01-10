@@ -1,0 +1,25 @@
+{
+  "name": "simrs-ap",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@iconify/vue": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "postcss": "^8.4.33",
+    "sass": "^1.69.7",
+    "sass-loader": "^13.3.3",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vue-tsc": "^1.8.25"
+  }
+}
