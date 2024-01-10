@@ -4,6 +4,7 @@ export interface RouteMeta {
   title: String;
   icon?: String;
   isParent?: Boolean;
+  description?: String;
 }
 
 export declare type RouteInterface = Omit<RouteRecordRaw, "meta"> & {

@@ -25,24 +25,26 @@
                 <p class="text-muted text-small">Administrator</p>
               </div>
             </div>
-            <div v-if="profileMenu" :class="['profile-menu']">
-              <div class="profile-menu-header">SuperSaiyah@mail.com</div>
-              <div class="profile-menu-content">
-                <div class="profile-menu-item">
-                  <Icon
-                    icon="material-symbols:manage-accounts-outline"
-                  />Profile
-                </div>
-                <div class="profile-menu-item">
-                  <Icon icon="tabler:logout" />Logout
+            <Transition name="slide-fadeY">
+              <div v-if="profileMenu" :class="['profile-menu']">
+                <div class="profile-menu-header">SuperSaiyah@mail.com</div>
+                <div class="profile-menu-content">
+                  <div class="profile-menu-item">
+                    <Icon
+                      icon="material-symbols:manage-accounts-outline"
+                    />Profile
+                  </div>
+                  <div class="profile-menu-item">
+                    <Icon icon="tabler:logout" />Logout
+                  </div>
                 </div>
               </div>
-            </div>
+            </Transition>
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" v-if="childrens?.length">
       <ul class="header-menu">
         <li
           v-for="(rt, i) in childrens"

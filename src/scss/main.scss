@@ -1,3 +1,4 @@
+@import "vue-select/dist/vue-select.css";
 @import "./variable";
 @import "./components/grid";
 
@@ -16,7 +17,7 @@ body {
 
 .container {
   // max-width: 1800px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 1.3rem;
 }
@@ -30,6 +31,10 @@ body {
   }
   &-small {
     font-size: 0.8rem;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
   }
 }
 
@@ -54,6 +59,8 @@ img {
   height: 100%;
   width: 100%;
 }
+
+/* ========================== TRANSITION =============================== */
 
 .slide-enter-active {
   -moz-transition-duration: 0.3s;
@@ -89,6 +96,22 @@ img {
   max-height: 0;
 }
 
+.slide-fadeY-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fadeY-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fadeY-enter-from,
+.slide-fadeY-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* ============================ CARD ========================== */
+
 .card {
   &:not(:has(.card-header)) {
     padding: 1rem;
@@ -96,6 +119,7 @@ img {
   margin: 1rem 0;
   background-color: var(--background-secondary);
   border-radius: 10px;
+  box-shadow: var(--box-shadow);
 
   &-header {
     padding: 0.8rem;
@@ -104,4 +128,139 @@ img {
   &-body {
     padding: 0.8rem;
   }
+
+  &-coin {
+    position: relative;
+    // padding: 2rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    color: var(--text-primary);
+    text-decoration: none;
+    .icon {
+      top: -2rem;
+      position: absolute;
+      font-size: 2rem;
+      background-color: var(--background-secondary);
+      box-shadow: var(--block-box-shadow);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    transition: transform 0.3s ease-in;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+    p {
+      color: var(--text-gray);
+      font-size: 0.98rem;
+    }
+  }
+}
+
+/* ================= FORM CSS ==================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-primary);
+  padding: 0.4rem 0.5rem 0.1rem 0.5rem;
+  border-radius: 5px;
+  position: relative;
+  margin: 0.1rem 0;
+  label {
+    font-weight: bold;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    font-weight: 550;
+  }
+  input,
+  textarea {
+    padding: 0.1rem;
+    background-color: var(--background-primary);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+  }
+
+  &:has(input:disabled),
+  &:has(textarea:disabled) {
+    opacity: 0.6;
+  }
+  input:disabled,
+  textarea:disabled {
+    cursor: not-allowed;
+  }
+
+  input,
+  input:focus,
+  textarea,
+  textarea:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:has(input:focus) {
+    border: 1.8px solid var(--primary);
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+  input[type="number"]::-webkit-inner-spin-button {
+    position: absolute;
+    bottom: 9px;
+    right: 10px;
+  }
+
+  .errors {
+    position: absolute;
+    bottom: -15px;
+    font-size: 0.7rem;
+    color: var(--danger);
+  }
+
+  &:has(.errors) {
+    border: 2px solid var(--danger);
+    margin-bottom: 16px;
+  }
+}
+
+/* =================== VSelect Config =======================*/
+
+:root {
+  --vs-dropdown-option--active-bg: var(--primary);
+  --vs-font-size: 0.95rem;
+  --vs-search-input-placeholder-color: var(--text-gray);
+}
+
+.vs__dropdown-toggle {
+  border: none;
+  padding: 0;
+}
+
+.vs__dropdown-option {
+  font-size: var(--vs-font-size);
+  padding: 3px 10px;
+}
+
+.vs__selected,
+.vs__selected-options,
+.vs__search,
+.vs__search:focus {
+  padding: 0;
+  font-size: var(--vs-font-size);
+  margin: 0;
+}
+
+.vs__actions {
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  z-index: 1;
 }

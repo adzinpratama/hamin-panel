@@ -16,16 +16,6 @@ const routes: Array<
       icon: "akar-icons:dashboard",
       isParent: true,
     },
-    children: [
-      {
-        name: "MainDashboard",
-        path: "/",
-        component: Dashboard,
-        meta: {
-          title: "Beranda",
-        },
-      },
-    ],
   },
   {
     name: "form",

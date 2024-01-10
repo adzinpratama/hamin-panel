@@ -20,6 +20,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+
+    /*  additional */
+    "sourceMap": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
