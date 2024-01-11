@@ -45,18 +45,9 @@
       </div>
     </div>
     <div class="container" v-if="childrens?.length">
-      <ul class="header-menu">
-        <li
-          v-for="(rt, i) in childrens"
-          :key="i"
-          :class="{ active: rt.name == route.matched[1]?.name }"
-        >
-          <router-link :to="{ name: rt.name }">
-            <Icon :icon="rt.meta?.icon" />
-            {{ rt.meta?.title }}
-          </router-link>
-        </li>
-      </ul>
+      <div class="header-menu">
+        <MenuItem :items="childrens"></MenuItem>
+      </div>
     </div>
   </div>
   <div class="sidebar">
@@ -78,6 +69,7 @@
 <script setup lang="ts">
 import { ref, computed } from "@vue/reactivity";
 import { useRouter, useRoute } from "vue-router";
+import MenuItem from "../components/header/MenuItem.vue";
 
 const profileMenu = ref<Boolean>(false);
 const router = useRouter();
@@ -96,6 +88,8 @@ const childrens = computed(() => route.matched[0]?.children);
   left: 0;
   right: 0;
   background-color: var(--background-primary);
+  z-index: 10;
+
   &-wrap {
     width: 100%;
     display: flex;
@@ -182,8 +176,7 @@ const childrens = computed(() => route.matched[0]?.children);
     }
   }
 }
-
-.header-menu {
+/* .header-menu {
   display: flex;
   list-style: none;
   gap: 1rem;
@@ -191,10 +184,12 @@ const childrens = computed(() => route.matched[0]?.children);
   box-shadow: var(--block-box-shadow);
   padding: 0.5rem;
   border-radius: 10px;
+  position: relative;
 
   li {
     padding: 0.5rem;
     margin-bottom: 0.1rem;
+    width: fit-content;
     &:has(a:hover),
     &.active {
       background-color: var(--background-primary);
@@ -212,7 +207,8 @@ const childrens = computed(() => route.matched[0]?.children);
     gap: 0.5rem;
     text-decoration: none;
   }
-}
+
+} */
 
 .sidebar {
   position: fixed;
@@ -243,7 +239,8 @@ const childrens = computed(() => route.matched[0]?.children);
         background-color: var(--background-element);
         a {
           color: var(--primary);
-          font-weight: 550;
+          opacity: 1;
+          /* font-weight: 550; */
           .text {
             transform: translateX(5px);
           }
@@ -256,6 +253,7 @@ const childrens = computed(() => route.matched[0]?.children);
         margin: 0.1rem;
         a {
           color: var(--text-inverted);
+          opacity: 1;
         }
       }
     }
@@ -266,7 +264,9 @@ const childrens = computed(() => route.matched[0]?.children);
       text-decoration: none;
 
       color: var(--text-gray);
-      font-weight: 400;
+      font-weight: 600;
+      font-size: 0.98rem;
+      opacity: 0.8;
       .text {
         transition: 0.3s;
         width: 0;

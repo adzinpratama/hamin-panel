@@ -1,7 +1,7 @@
 /*
  * General utils for managing cookies in Typescript.
  */
-export function setCookie(name: string, val: string) {
+export function setCookie(name: string, val: any) {
   const date = new Date();
   const value = val;
 
@@ -13,7 +13,7 @@ export function setCookie(name: string, val: string) {
     name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
 }
 
-export function getCookie(name: string) {
+export function getCookie(name: string): any {
   const value = "; " + document?.cookie;
   const parts = value.split("; " + name + "=");
 

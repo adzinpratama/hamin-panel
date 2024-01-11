@@ -1,14 +1,17 @@
+import { componentRouter } from "./componentRouter";
+import { modalRouter } from "./modaRouter";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Dashboard from "../pages/dashboard/index.vue";
-import Form from "../pages/form/index.vue";
 import { formRouter } from "./formRouter";
 import { RouteInterface, type RouteMeta } from "./routerInterface";
+import { tableRouter } from "./tableRouter";
+import MenuVue from "../pages/layouts/Menu.vue";
 
 const routes: Array<
-  RouteRecordRaw & { meta: RouteMeta; children: RouteInterface[] }
+  RouteRecordRaw & { meta: RouteMeta; children?: RouteInterface[] }
 > = [
   {
-    name: "dashboard",
+    name: "Dashboard",
     path: "/",
     component: Dashboard,
     meta: {
@@ -20,13 +23,46 @@ const routes: Array<
   {
     name: "form",
     path: "/form",
-    component: Form,
+    component: MenuVue,
     meta: {
       title: "Form",
       icon: "mdi:form-dropdown",
       isParent: true,
     },
     children: formRouter,
+  },
+  {
+    name: "Table",
+    path: "/table",
+    component: MenuVue,
+    meta: {
+      title: "Table",
+      icon: "material-symbols:backup-table",
+      isParent: true,
+    },
+    children: tableRouter,
+  },
+  {
+    name: "Modal",
+    path: "/modal",
+    component: MenuVue,
+    meta: {
+      title: "Modal",
+      icon: "carbon:popup",
+      isParent: true,
+    },
+    children: modalRouter,
+  },
+  {
+    name: "Component",
+    path: "/component",
+    component: MenuVue,
+    meta: {
+      title: "Component",
+      icon: "tdesign:component-divider-horizontal",
+      isParent: true,
+    },
+    children: componentRouter,
   },
 ];
 

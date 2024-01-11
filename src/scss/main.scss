@@ -1,6 +1,10 @@
 @import "vue-select/dist/vue-select.css";
 @import "./variable";
 @import "./components/grid";
+@import "./components/menu";
+@import "./components/table";
+
+@import "./components/button";
 
 * {
   padding: 0;
@@ -19,7 +23,8 @@ body {
   // max-width: 1800px;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0 1.3rem;
+  // padding: 0 1.3rem;
+  padding: 0 2rem;
 }
 
 .text {
@@ -45,7 +50,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
+  height: 5px;
   background-color: #f5f5f5;
 }
 
@@ -177,7 +183,7 @@ img {
     font-size: 0.6rem;
     text-transform: uppercase;
     color: var(--text-primary);
-    font-weight: 550;
+    // font-weight: 550;
   }
   input,
   textarea {
