@@ -27,14 +27,16 @@
             </div>
             <Transition name="slide-fadeY">
               <div v-if="profileMenu" :class="['profile-menu']">
-                <div class="profile-menu-header">SuperSaiyah@mail.com</div>
+                <div class="profile-menu-header text-bold">
+                  SuperSaiyah@mail.commmm
+                </div>
                 <div class="profile-menu-content">
                   <div class="profile-menu-item">
                     <Icon
                       icon="material-symbols:manage-accounts-outline"
                     />Profile
                   </div>
-                  <div class="profile-menu-item">
+                  <div class="profile-menu-item" @click="logout">
                     <Icon icon="tabler:logout" />Logout
                   </div>
                 </div>
@@ -64,12 +66,17 @@
       </li>
     </ul>
   </div>
+
+  <ModalDialog></ModalDialog>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "@vue/reactivity";
 import { useRouter, useRoute } from "vue-router";
 import MenuItem from "../components/header/MenuItem.vue";
+import ModalDialog from "../components/modals/ModalDialog.vue";
+import { useConfirm } from "../composables/useConfirm";
+import { useAuthStore } from "../stores/auth";
 
 const profileMenu = ref<Boolean>(false);
 const router = useRouter();
@@ -79,6 +86,16 @@ const routes = computed(() =>
 );
 
 const childrens = computed(() => route.matched[0]?.children);
+const auth = useAuthStore();
+const confirm = useConfirm();
+
+const logout = () => {
+  confirm.require({
+    title: "Yakin ingin keluar ?",
+    message: "",
+    onAccept: () => auth.logout(),
+  });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -125,8 +142,9 @@ const childrens = computed(() => route.matched[0]?.children);
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 30px;
+    background-color: var(--background-secondary);
     &:hover {
-      background-color: var(--background-secondary);
+      box-shadow: var(--block-box-shadow);
     }
   }
   &-avatar {
@@ -154,10 +172,11 @@ const childrens = computed(() => route.matched[0]?.children);
       /* top: 120%; */
     }
     &-header {
-      padding: 1.2rem;
-      padding-bottom: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      /* padding-bottom: 0.5rem; */
       border-bottom: 1px solid var(--shadow);
       /* word-break: break-all; */
+      overflow: hidden;
       text-overflow: ellipsis;
     }
     &-content {
@@ -169,6 +188,7 @@ const childrens = computed(() => route.matched[0]?.children);
       padding: 0.5rem 1.2rem;
       display: flex;
       gap: 0.5rem;
+      cursor: pointer;
       &:hover {
         background-color: var(--background-primary);
         color: var(--primary);
@@ -209,80 +229,4 @@ const childrens = computed(() => route.matched[0]?.children);
   }
 
 } */
-
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-
-  &-content {
-    background-color: var(--background-secondary);
-    box-shadow: var(--block-box-shadow);
-    border-radius: 0 10px 10px 0;
-    /* padding: 1rem 0; */
-    list-style: none;
-    overflow: auto;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    li {
-      padding: 0.8rem 0.5rem 0.8rem 1rem;
-      &:hover {
-        background-color: var(--background-element);
-        a {
-          color: var(--primary);
-          opacity: 1;
-          /* font-weight: 550; */
-          .text {
-            transform: translateX(5px);
-          }
-        }
-      }
-
-      &.active {
-        background-color: var(--primary);
-        border-radius: 10px;
-        margin: 0.1rem;
-        a {
-          color: var(--text-inverted);
-          opacity: 1;
-        }
-      }
-    }
-    li a {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      text-decoration: none;
-
-      color: var(--text-gray);
-      font-weight: 600;
-      font-size: 0.98rem;
-      opacity: 0.8;
-      .text {
-        transition: 0.3s;
-        width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-    &:hover {
-      &::-webkit-scrollbar {
-        display: block;
-        width: 4px;
-      }
-      li a .text {
-        width: 150px;
-      }
-    }
-  }
-}
 </style>

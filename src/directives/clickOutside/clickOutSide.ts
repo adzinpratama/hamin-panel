@@ -10,7 +10,7 @@ const IS_TOUCH =
   ("ontouchstart" in window ||
     (HAS_NAVIGATOR && navigator.msMaxTouchPoints > 0));
 const EVENTS = IS_TOUCH ? ["touchstart"] : ["click"];
-const processDirectiveArguments = (bindingValue) => {
+const processDirectiveArguments = (bindingValue: any) => {
   const isFunction = typeof bindingValue === "function";
   if (!isFunction && typeof bindingValue !== "object") {
     throw new Error(
@@ -19,7 +19,7 @@ const processDirectiveArguments = (bindingValue) => {
   }
   return {
     handler: isFunction ? bindingValue : bindingValue.handler,
-    middleware: bindingValue.middleware || ((item) => item),
+    middleware: bindingValue.middleware || ((item: any) => item),
     events: bindingValue.events || EVENTS,
     isActive: !(bindingValue.isActive === false),
     detectIframe: !(bindingValue.detectIframe === false),

@@ -2,13 +2,15 @@ import { createApp } from "vue";
 import { Icon } from "@iconify/vue";
 import App from "./App.vue";
 import routers from "./router";
-import clickOutSide from "./directives/clickOutSide/index.js";
+// import clickOutSide from "./directives/clickOutSide/index.js";
 import "./scss/main.scss";
 import { createPinia } from "pinia";
+import directives from "./directives";
 
-createApp(App)
+const app = createApp(App)
   .use(routers)
-  .use(clickOutSide)
   .component("Icon", Icon)
-  .use(createPinia())
-  .mount("#app");
+  .use(createPinia());
+
+directives(app);
+app.mount("#app");

@@ -1,10 +1,12 @@
-@import "vue-select/dist/vue-select.css";
 @import "./variable";
 @import "./components/grid";
 @import "./components/menu";
 @import "./components/table";
 
 @import "./components/button";
+@import "./components/tooltip";
+/* ============== Vendor ================ */
+@import "vue-select/dist/vue-select.css";
 
 * {
   padding: 0;
@@ -170,10 +172,12 @@ img {
 }
 
 /* ================= FORM CSS ==================== */
+$primary-mix: #f6f6f6;
+
 .form-group {
   display: flex;
   flex-direction: column;
-  background-color: var(--background-primary);
+  background-color: mix($primary-mix, #000000, 94%);
   padding: 0.4rem 0.5rem 0.1rem 0.5rem;
   border-radius: 5px;
   position: relative;
@@ -188,7 +192,7 @@ img {
   input,
   textarea {
     padding: 0.1rem;
-    background-color: var(--background-primary);
+    background-color: mix($primary-mix, #000000, 94%);
     font-size: 0.95rem;
     color: var(--text-primary);
     font-family: var(--font-family);

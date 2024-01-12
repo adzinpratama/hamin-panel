@@ -23,7 +23,7 @@
 
     /*  additional */
     "sourceMap": true,
-    "allowJs": true,
+    // "allowJs": true,
     "allowSyntheticDefaultImports": true,
     
   },

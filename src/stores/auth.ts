@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getCookie, setCookie } from "../utils/supports";
+import { deleteCookie, getCookie, setCookie } from "../utils/supports";
 
 export interface authState {
   isLoggedIn?: boolean | null;
@@ -11,9 +11,14 @@ export const useAuthStore = defineStore("auth", {
   }),
 
   actions: {
-    login: () => {
-      console.log("oke");
+    login() {
       setCookie("isLoggedIn", true);
+      this.isLoggedIn = true;
+    },
+    logout() {
+      deleteCookie("isLoggedIn");
+      this.isLoggedIn = false;
+      alert("session Ended");
     },
   },
   getters: {
